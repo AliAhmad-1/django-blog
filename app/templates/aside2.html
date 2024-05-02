@@ -1,0 +1,22 @@
+{% load static %}
+<aside class="aside">
+
+    <div class="content">
+        <p class="title">Dashboard</p>
+        <div class="top">
+            <ul>
+                <li ><a href="{% url 'settings' %}"><span class="material-icons-outlined">book</span> <span>Blogs</span></a></li>
+                <li class="add_post"><a href="{% url 'add_post' %}"><span class="material-icons-outlined">add</span> <span>Write</span></a></li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <p class="title">Settings</p>
+            <ul>
+
+                <li class="edit"><a href="{% url 'edit-profile' %}"><span class="material-icons-outlined">person</span><span>Edit Profile</span></a></li>
+                <li class="pass_change"><a href="{% url 'password_change' %}"><span class="material-icons-outlined">lock</span><span>Change Password</span></a></li>
+
+            </ul>
+        </div>
+    </div>
+</aside>

@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block title %}
+    share-post
+{% endblock title %}
+{% comment %} 5095 7560	
+	5546 6741
+8656 0563	
+	3309 4558
+1020 3685	
+	4385 9743
+0852 3787	
+	4230 6215
+5743 7746	
+	5707 0859
+
+    gfzo cuyk rzvx jrvq  {% endcomment %}
+    
+{% block content %}
+{% if sent %}
+ <h1>E-mail successfully sent</h1>
+ <p>
+ "{{ post.title }}" was successfully sent to {{ form.cleaned_data.to }}.
+ </p>
+ {% else %}
+ <h1>Share "{{ post.title }}" by e-mail</h1>
+ <form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" value="Send e-mail">
+    </form>
+    {% endif %}
+{% endblock content %}

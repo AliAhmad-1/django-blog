@@ -1,0 +1,128 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    {{ block.super }}-Sign Up
+{% endblock title %}
+    
+    {% block content %}
+    <section class="login-content">
+        <div class="container">
+            <div class="login" style="margin-top: 4rem;">
+                <h5>Join Us Today</h5>
+                <form action="" method="post" novalidate autocomplete="off">
+                    {% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                        <div>
+                            {% for error in form.non_field_errors %}
+                            <p>{{error}}</p>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    {% for field in form %}
+
+                        <div class="username">
+                            {% if field.html_name == 'username' %}
+                            <span class="material-icons-sharp">
+                                person
+                            </span>
+                            {% elif field.html_name == 'email' %}
+                            <span class="material-icons-sharp">
+                                mail
+                                </span>
+                                {% elif field.html_name == 'password1' %}
+                                <span class="material-icons-sharp">
+                                    key
+                                </span>
+                                <span class="material-icons-sharp show1" style="position: absolute; left: 260px;top: 5px; cursor: pointer;">
+                                    visibility_off
+                                    </span> 
+ 
+                                {% else %}
+                                <span class="material-icons-sharp">
+                                    key
+                                </span>
+                                <span class="material-icons-sharp show1 icon2" style="position: absolute; left: 260px;top: 5px; cursor: pointer;">
+                                    visibility_off
+                                    </span> 
+                                
+                        {% endif %} 
+                            {% if form.is_bound %}
+
+                            {% if field.errors %}
+                                {% render_field field class='in-valid' %}
+                                <ul>
+                                {% for error in field.errors %}
+
+                                <li class="errorlist">{{error}}</li>
+                                        
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                                {% render_field field class='valid' %} 
+                            {% endif %}
+                        {% else %}
+                            {% render_field field %}
+  
+                        {% endif %}
+                        </div>
+
+                    {% endfor %}
+                        
+                   
+
+
+                 
+
+                    <button type="submit">Sign Up</button>
+                    
+
+                        
+                 
+                </form>
+                <div class="horizontal-line">
+                    <hr width="50%"><span>OR</span>
+                    <hr width="50%">
+                </div>
+                <div class="social-links">
+                    <div>
+                        <a href="{% url 'social:begin' 'google-oauth2' %}"><img src="{% static 'images/icons8-google.svg' %}" alt="icons8-google">Google</a>
+                    </div>
+                    <div>
+                        <a href="{% url 'social:begin' 'github' %}"><img src="{% static 'images/icons8-github.svg' %}" alt="icons8-github">Github</a>
+                    </div>
+                    {% comment %} <div>
+                        <a href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'images/icons8-facebook.svg' %}" alt="icons8-facebook">Facebook</a>
+                    </div> {% endcomment %}
+                </div>
+                <div>Don't have an account ? <a href="{% url 'login' %}">Sign In here</a></div>
+            </div>
+        </div>
+
+        <script>
+            const password_input=document.querySelectorAll('.login form input[type=password]')
+            const password_icon=document.querySelectorAll('.show1')
+            
+            password_icon.forEach((element,index)=>{
+            element.addEventListener('click',()=>{
+                if (password_input[index].type ==='password'){
+                    password_input[index].type='text';
+                    element.textContent='visibility'
+                }
+                else{
+                    password_input[index].type='password';
+                    element.textContent='visibility_off'
+                }
+            })
+            })
+
+
+
+
+        </script>
+    </section>
+    {% endblock content %}
+        

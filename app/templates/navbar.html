@@ -1,0 +1,66 @@
+{% load static %}
+<header>
+  <div class="nav">
+    <div class="left-section">
+      <a href="{% url 'home' %}"><img src="{% static 'images/Medium.svg' %}" alt="medium-logo" /></a>
+
+      <form action="" method="get" novalidate>
+        {% if searchform %}
+          <div class="search">
+            <span class="material-icons-sharp">search</span>
+            {{ searchform.query }}
+          </div>
+        {% endif %}
+      </form>
+    </div>
+    <div class="right-section">
+      <div class="add-post">
+        {% comment %} <span class="material-icons-outlined">add</span> {% endcomment %}
+
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Write" ><path d="M14 4a.5.5 0 0 0 0-1v1zm7 6a.5.5 0 0 0-1 0h1zm-7-7H4v1h10V3zM3 4v16h1V4H3zm1 17h16v-1H4v1zm17-1V10h-1v10h1zm-1 1a1 1 0 0 0 1-1h-1v1zM3 20a1 1 0 0 0 1 1v-1H3zM4 3a1 1 0 0 0-1 1h1V3z" fill="currentColor"></path><path d="M17.5 4.5l-8.46 8.46a.25.25 0 0 0-.06.1l-.82 2.47c-.07.2.12.38.31.31l2.47-.82a.25.25 0 0 0 .1-.06L19.5 6.5m-2-2l2.32-2.32c.1-.1.26-.1.36 0l1.64 1.64c.1.1.1.26 0 .36L19.5 6.5m-2-2l2 2" stroke="currentColor"></path></svg>
+        <span style="margin-left: 5px;" ><a href="{% url 'add_post' %}">Write</a></span>
+      </div>
+
+      {% if request.user.is_authenticated %}
+      <span class="welcome">Welcome-{{ request.user }}</span>
+        {% if request.user.photo %}
+          <img src="{{ request.user.photo.url }}" style="width: 30px;height: 30px;border-radius:50% ; cursor: pointer;" class="user-photo" />
+        {% else %}
+          <img src="{% static 'images/icons8-person-64.png' %}" style="width: 30px;height: 30px;border-radius:50% ; cursor: pointer;" class="user-photo"  />
+        {% endif %}
+        
+      {% else %}
+        <ul>
+          <li>
+            <a href="/account/login">Sign In</a>
+          </li>
+          <li>
+            <a href="/account/register">Sign Up</a>
+          </li>
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+  <div class="menu hide">
+    <ul>
+      <li>
+        
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'profile' request.user.id %}"><img src="{% static 'images/icons8-male-user-50.png' %}" />Profile</a>
+
+        {% endif %}
+          
+      </li>
+      <li>
+        <a href="{% url 'settings' %}"><img src="{% static 'images/icons8-dashboard-30.png' %}" />Dashboard</a>
+      </li>
+      <li>
+        <a href="{% url 'edit-profile' %}"><img src="{% static 'images/icons8-settings.svg' %}" />Settings</a>
+      </li>
+      <li>
+        <a href="/account/logout"><img src="{% static 'images/icons8-logout-50.png' %}" />Logout</a>
+      </li>
+    </ul>
+  </div>
+</header>
+

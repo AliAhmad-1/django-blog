@@ -1,0 +1,234 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load blog_tags %}
+{% block title %}
+  {{ block.super }} -home
+{% endblock %}
+
+{% block content %}
+
+
+  <section>
+    <div class="base-container">
+      {% if messages %}
+        <div class="alert-success">
+          {% for message in messages %}
+            <P>{{ message }}</P>
+            <img src="{% static 'images/icons8-ok.svg' %}" />
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="posts">
+        <div class="f-search">
+          <h5>Home</h5>
+          <form action="" method="get" novalidate>
+            {% if searchform %}
+              <div class="search">
+                <span class="material-icons-sharp">search</span>
+                {{ searchform.query }}
+              </div>
+            {% endif %}
+          </form>
+        </div>
+
+        <!-- post -->
+
+        {% if query %}
+       
+          {% with results.count as total_results %}
+            <p style="display: flex; justify-content: end; color: mediumslateblue; font-size: 1.4rem;">Found {{ total_results }} result{{ total_results|pluralize }}</p>
+          {% endwith %}
+          {% for post in results %}
+            <div class="post" style="border: 1px solid rgba(0, 0, 0, 0.03); padding: 0.5rem .9rem; border-radius: 6px;margin-top: 1rem;">
+              <div class="author-info">
+                {% if post.author.photo %}
+                  <img src="{{ post.author.photo.url }}" />
+                {% else %}
+                  <img src="{% static 'images/icons8-person-64.png' %}" />
+                {% endif %}
+
+                <p>
+                  <span class="name"><a href="{% url 'profile' post.author.id %}" style="color: black;">{{ post.author }}</a></span><span class="date">@ {{ post.created }}</span>
+
+                </p>
+              </div>
+              <div class="body-post">
+                <div style="height: 130px;overflow: hidden;  ">
+                  <p class="title">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                  </p>
+                  <p class="body">{{ post.body|safe }}</p>
+                </div>
+                <div class="post-img">
+                  {% if post.image %}
+                  <img src="{{post.image.url}}">
+                  {% endif %}
+                  
+                </div>
+              </div>
+              <div>
+                <div style="display: flex;justify-content: center;align-items: center;">
+                  {% for tag in post.tags.all %}
+                    <p class="tag" style="margin-right: 5px;">{{ tag }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            {% empty %}
+            <div style="background-color: antiquewhite;padding: .5rem;margin-top: 1rem;text-align: center;">
+              <p > There are no posts matching the search result</p>
+            </div>
+            
+
+          {% endfor %}
+        {% else %}
+          <p style="display: flex; justify-content: end; color: mediumslateblue; font-size: 1.4rem;">
+            {% my_tag_total_posts %} Articles
+          </p>
+          {% for post in posts %}
+            <div class="post" style="border: 1px solid rgba(0, 0, 0, 0.03); padding: 0.5rem .9rem; border-radius: 6px;margin-top: 1rem;">
+              <div class="author-info">
+                {% if post.author.photo %}
+                  <img src="{{ post.author.photo.url }}" />
+                {% else %}
+                  <img src="{% static 'images/icons8-person-64.png' %}" />
+                {% endif %}
+
+                <p>
+                  <span class="name"><a href="{% url 'profile' post.author.id %}" style="color: black;">@ {{ post.author }}</a></span><span class="date">@ {{ post.created }}</span>
+
+                </p>
+              </div>
+              <div>
+                <div style="height: 130px;overflow: hidden;">
+                  <p class="title">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                  </p>
+                  <p class="body">{{ post.body|safe }}</p>
+                </div>
+                <div class="post-img">
+                  {% if post.image %}
+                  <img src="{{post.image.url}}">
+                  {% endif %}
+                  
+                </div>
+              </div>
+              <div>
+                <div style="display: flex;justify-content: center;align-items: center;">
+                  {% for tag in post.tags.all %}
+                    <p class="tag" style="margin-right: 5px;">{{ tag }}</p>
+                  {% endfor %}
+
+                </div>
+              </div>
+            </div>
+            {% empty %}
+            <div style="background-color: antiquewhite;padding: .5rem;margin-top: 1rem;text-align: center;">
+              <p > No Posts other are found by this tag</p>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        {% if posts %}
+          <!-- pagenation -->
+          <div class="pagenation">
+            <ul>
+              {% if posts.has_previous %}
+                <li>
+                  <a href="?page={{ data.previous_page_number }}">Prev</a>
+                </li>
+              {% endif %}
+              <li>page {{ posts.number }} of {{ posts.paginator.num_pages }}</li>
+
+              {% if posts.has_next %}
+                <li>
+                  <a href="?page={{ posts.next_page_number }}">Next</a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+          <!-- pagenation -->
+        {% endif %}
+      </div>
+      <div class="details">
+        <div class="tags">
+          <p>Discover more of what matters to you</p>
+          <ul>
+            {% for tag in tags %}
+              <a href="{% url 'post_list_by_tag' tag.slug %}"><li>{{ tag }}</li></a>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="treding" style="margin-top: 1rem;">
+          <p style="margin:2rem 0;display: flex;justify-content: start;align-items: center; gap: 5px;">
+            <img src="{% static 'images/rss-feed-2.svg' %}" style="width: 25px;height: 25px;" />
+            <a href="{% url 'post_feed' %}" style="color: blue; font-size: 1.2rem;">Subscribe to my RSS feed</a>
+          </p>
+          <p class="trend-title">
+            Trending <span class="material-icons-sharp">trending_up</span>
+          </p>
+
+          {% get_most_commented_posts as most_commented_posts %}
+          {% for post in most_commented_posts %}
+            <div class="post">
+              <div class="author-info">
+                
+                {% if post.author.photo %}
+                  <img src="{{ post.author.photo.url }}" />
+                {% else %}
+                <img src="{% static 'images/icons8-male-user-50.png' %}" />
+                {% endif %}
+                  
+                
+                <p>
+                  <span class="name"><a href="{% url 'profile' post.author.id %}" style="color: black;">{{ post.author }}</a></span><span class="date">{{ post.created }}</span>
+                </p>
+              </div>
+
+              <div>
+                <p class="title">
+                  <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="treding" style="margin-bottom: 2rem;">
+          <p class="trend-title">Latest Posts</p>
+
+          {% latest_posts 2 as latest_posts_ %}
+          {% for post in latest_posts_ %}
+            <div class="post">
+              <div class="author-info">
+                
+                {% if post.author.photo %}
+                <img src="{{ post.author.photo.url }}" />
+                {% else %}
+                <img src="{% static 'images/icons8-male-user-50.png' %}" />
+
+                {% endif %}
+                  
+                
+                <p>
+                  <span class="name"><a href="{% url 'profile' post.author.id %}" style="color: black;">{{ post.author }}</a></span><span class="date">{{ post.created }}</span>
+
+                </p>
+              </div>
+
+              <div>
+                <p class="title">
+                  <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      
+    </div>
+    
+  </section>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+  {{ block.super }}-write_post
+{% endblock %}
+{% block content %}
+<div class="container-blog-add">
+    <div class="add_post_content" >
+        <p class="title">Add Post</p>
+        <form action="" method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            {{form.media}}
+            
+            {% for field in form %}
+            <div>
+                <label for="{{field.id_for_label}}">{{field.label_tag}}</label>
+                
+                {% if form.is_bound %}
+                    
+                    {% if field.errors %}
+                    {% render_field field class='in-valid' %}
+                    <span>{{field.help_text}}</span>  
+                    
+                    {% for error in field.errors %}
+                        <span class="errorlist">{{error}}</span>
+                    {% endfor %}
+                        
+                    {% else %}
+                        {% render_field field class='valid' %}
+                    {% endif %}
+                {% else %}   
+                {% render_field field  %}   
+                <span>{{field.help_text}}</span>  
+                {% endif %}
+            </div>       
+            {% endfor %}
+
+            {% comment %} <button type="submit">Save as Draft</button> {% endcomment %}
+         
+                <button type="submit" name="publish_post" >Publish Post</button>
+                <button type="submit" name="save_draft" class="draft">Save Draft</button>
+
+
+
+        </form>
+    </div>
+</div>
+{% endblock %}

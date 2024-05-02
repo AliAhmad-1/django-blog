@@ -1,0 +1,124 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    {{ block.super }}-sign in
+{% endblock title %}
+
+{% block content %}
+<section class="login-content">
+    <div class="container">
+        <div class="login">
+            <h5>Welcome Back</h5>
+            <form action="" method="post" autocomplete="off" novalidate>
+                {% csrf_token %}
+
+
+
+                {% if form.non_field_errors %}
+                <div>
+                    {% for error in form.non_field_errors %}
+                    <p style="color: red;">{{error}}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
+            
+            {% for field in form %}
+
+                <div class="username">
+                    {% if field.html_name == 'username' %}
+                    <span class="material-icons-sharp">
+                        person
+                    </span>
+                        {% elif field.html_name == 'password' %}
+                        <span class="material-icons-sharp">
+                            key
+                        </span>
+                        <span class="material-icons-sharp show1" style="position: absolute; left: 260px;top: 5px; cursor: pointer;" >
+                            visibility_off
+                            </span> 
+
+
+                {% endif %} 
+                    {% if form.is_bound %}
+
+                    {% if field.errors %}
+                        {% render_field field class='in-valid' %}
+                        <ul>
+                        {% for error in field.errors %}
+
+                        <li class="errorlist">{{error}}</li>
+                                
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                        {% render_field field class='valid' %} 
+                    {% endif %}
+                {% else %}
+                    {% render_field field %}
+
+                {% endif %}
+                </div>
+
+            {% endfor %}
+
+
+
+
+
+
+
+
+
+               
+
+                <button type="submit">Sign In</button>
+            </form>
+            <div class="horizontal-line">
+                <hr width="50%"><span>OR</span>
+                <hr width="50%">
+            </div>
+
+            <div class="social-links">
+                <div>
+                    <a href="{% url 'social:begin' 'google-oauth2' %}"><img src="{% static 'images/icons8-google.svg' %}" alt="icons8-google">Google</a>
+                </div>
+                <div>
+                    <a href="{% url 'social:begin' 'github' %}"><img src="{% static 'images/icons8-github.svg' %}" alt="icons8-github">Github</a>
+                </div>
+                  {% comment %} <div>
+                    <a href="{% url 'social:begin' 'linkedin-oauth2' %}"><img src="{% static 'images/icons8-linkedin.svg' %}" alt="icons8-linkedin">Linkedin</a>
+                </div>  {% endcomment %}
+            </div>
+            <div>Don't have an account ? <a href="{% url 'regitser' %}">join us today</a></div>
+        </div>
+    </div>
+
+    <script>
+        const password_input=document.querySelector('.login form input[type=password]')
+        const password_icon=document.querySelector('.show1')
+        show=true
+        password_icon.addEventListener('click', () => {
+            
+            console.log()
+            if (show == false) {
+                password_input.setAttribute('type', 'password');
+                password_icon.textContent = "visibility_off"
+                show = true
+            } else {
+                password_input.setAttribute('type', 'text');
+                password_icon.textContent = "visibility"
+                show = false
+            }
+    
+    
+    
+        })
+    </script>
+</section>
+{% endblock content %}
+
+
+    
+    

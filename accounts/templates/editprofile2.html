@@ -1,0 +1,127 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block title %}
+    {{ block.super }}-edit_profile
+{% endblock title %}
+
+{% block content %}
+<div class="container-blog">
+{% include 'aside2.html' %}
+<main class="main-blogs">
+    <div class="container-manage-blogs">
+        <h5 class="title">Edit Profile</h5>
+        <div class="edit-profile-content">
+    
+            <div class="edit-profile-form">
+                <form action="" method="post" novalidate enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    
+                   {% if request.user.photo %}
+                    <img src="{{request.user.photo.url}}" class="profile_photo_img">
+                    {% else %}
+                    <img src="{% static 'images/icons8-person-64.png' %}" class="profile_photo_img">
+    
+                    {% endif %}
+                     <label for="id_photo" class="add_label"><span class="material-icons-sharp">
+                            add
+                    </span></label> 
+                    
+                    {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                    <p class="errorlist">{{error}}</p>
+                    {% endfor %}
+                    {% endif %}
+    
+                    
+                    {% for field  in form %}
+                    <div class="user_name">
+                        {% if field.html_name == 'photo' %}
+                        {% render_field field %}
+                        
+                        {% if field.errors %}
+                            
+                            {% for error in field.errors %}
+                                <span class="errorlist">{{error}}</span>
+                            {% endfor %}
+                                
+                        {% endif %}
+                            
+                       
+                    {% else %}
+                    <label for="{{field.id_for_label}}">{{field.label_tag}}</label>
+                    
+    
+                        {% if form.is_bound %}
+                            
+                            {% if field.errors %}
+                                {% render_field field class='in-valid' %}
+                            
+                                {% for error in field.errors %}
+                                    <span class="errorlist">{{error}}</span>
+                                {% endfor %}
+                            {% else %}
+                            {% render_field field class='valid' %}
+                                
+                            {% endif %}
+                        {% else %}
+                        {% render_field field %}       
+                            
+                        {% endif %}
+                            
+                    </div>
+                    {% endif %}
+    
+                    {% endfor %}
+                    <input type="submit" value="Update">
+                    
+    
+    
+                </form>
+    
+            </div>
+    
+        </div>
+    </div>
+</main>
+
+</div>
+<script>
+    const navbar_active = document.querySelectorAll('.container-blog .aside li');
+    const name_person_likes=document.querySelectorAll('.name_person_likes');
+    const likes=document.querySelectorAll('.analastic .likes');
+    const name_person_comments=document.querySelectorAll('.name_person_comments');
+    const comments=document.querySelectorAll('.analastic .comments');
+
+
+    comments.forEach((element,index)=>{
+    element.addEventListener('click',()=>{
+        name_person_comments[index].classList.toggle('hide')
+        })
+    })
+
+    likes.forEach((element,index)=>{
+        element.addEventListener('click',()=>{
+            name_person_likes[index].classList.toggle('hide')
+            })
+        })
+
+
+    function active_link() {
+        navbar_active.forEach((item) => {
+            item.classList.remove('active');
+            this.classList.add('active');
+        })
+    }
+    navbar_active.forEach((item) => {
+        item.addEventListener('click', active_link);
+    })
+
+
+</script>
+{% endblock content %}
+    
+    
+    

@@ -1,0 +1,229 @@
+{% extends 'index.html' %}
+{% load static %}
+{% comment %} {% load ckeditor %} {% endcomment %}
+{% load widget_tweaks %}
+
+{% block title %}
+  {{ block.super }}-posts-detail
+{% endblock %}
+{% block content %}
+  <section class="post-detail">
+    {% if messages %}
+      <div class="alert-success">
+        {% for message in messages %}
+          <P>{{ message }}</P>
+          <img src="{% static 'images/icons8-ok.svg' %}" />
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="container">
+      
+      {% if post_detail.image %}
+      <img src="{{ post_detail.image.url }}" class="post-img" />
+      {% else %}
+      <img src="{% static 'images/my-logo-2.jpg' %}" class="post-img">
+      {% endif %}
+      <div class="post-detail-content">
+        <p class="title">{{ post_detail.title }}</p>
+        <div class="info">
+          <div>
+            <div class="author">
+             
+              {% if post_detail.author.photo %}
+                <img src="{{ post_detail.author.photo.url }}" />
+                {% else %}
+                <img src="{% static 'images/icons8-person-64.png' %}" />
+              {% endif %}
+                
+              
+              <p>{{ post_detail.author }}</p>
+            </div>
+            <div class="published">{{ post_detail.created }}</div>
+          </div>
+          <div class="comments">
+            <div class="content-comment">
+              <div>
+                <a href="{% url 'like' post_detail.id %}" style="margin-top: 5px;">
+                       
+                  {% if like %}
+                  <img src="{% static 'images/icons8-heart-24.png' %}" alt="icons8-heart-50" />
+                  {% else %}
+                  <img src="{% static 'images/icons8-heart-50.png' %}" alt="icons8-heart-50" />
+                  {% endif %}
+                    
+                </a>
+  
+                <span>{{post_detail.likes.count}}</span>likes
+                
+                
+  
+                  
+                  
+              </div>
+              <div class="comment-icon">
+                <img src="{% static 'images/icons8-comment.svg' %}" alt="icons8-heart-50" />
+                <span>{{ post_detail.comments.count}}</span>
+              </div>
+            </div>
+            <div class="share share-icon">
+              Share via email
+              <img src="{% static 'images/icons8-share.svg' %}" alt="icons8-share" />
+            </div>
+          </div>
+          <div class="share_form hide">
+            <h5>Share Post :</h5>
+            <form action="" method="post" novalidate name="shareform">
+              {% csrf_token %}
+  
+              {% if shareform.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                  <p class="errorlist" style="color: red;">{{ error }}</p>
+                {% endfor %}
+              {% endif %}
+  
+              {% for field in shareform %}
+                {% if shareform.is_bound %}
+                  {% if field.errors %}
+                    {% render_field field class='in-valid-share' %}
+  
+                    {% for error in field.errors %}
+                      <p class="errorlist">{{ error }}</p>
+                    {% endfor %}
+                  {% else %}
+                    {% render_field field class='valid' %}
+                  {% endif %}
+                {% else %}
+                  {% render_field field %}
+                {% endif %}
+              {% endfor %}
+  
+              <input type="submit" value="Send" />
+            </form>
+          </div>
+        </div>
+        <div class="comment-form hide">
+          <div class="comments-content">
+            {% for comment in comments %}
+              {% if forloop.last %}
+                <div class="comment">
+                  <div class="first">
+                    <div class="first-1">
+                      {% if comment.user.photo %}
+                        <img src="{{ comment.user.photo.url }}" />
+                      {% else %}
+                        <img src="{% static 'images/icons8-person-64.png' %}" />
+                      {% endif %}
+                      <p>{{ comment.user }}</p>
+                      <span>{{ comment.created|date:'DATE_FORMAT' }}</span>
+                    </div>
+                    {% if comment.user != request.user %}
+                      <div class="first-2">
+                        <span class="material-icons-outlined">reply</span>reply
+                      </div>
+                    {% else %}
+                      <div class="info">
+                          <p><a href="{% url 'delete' comment.id %}" style="color: #ff7979;"><span class="material-icons-outlined">
+                              delete
+                              </span></a></p>
+                        
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="second">{{ comment.body }}</div>
+                </div>
+              {% else %}
+                <div class="comment" style="border-bottom: 1px solid rgba(0, 179, 255, 0.1);">
+                  <div class="first">
+                    <div class="first-1">
+                      {% if comment.user.photo %}
+                        <img src="{{ comment.user.photo.url }}" />
+                      {% else %}
+                        <img src="{% static 'images/icons8-person-64.png' %}" />
+                      {% endif %}
+  
+                      <p>{{ comment.user }}</p>
+                      <span>{{ comment.created|date:'DATE_FORMAT' }}</span>
+                    </div>
+  
+                    {% if comment.user != request.user %}
+                      <div class="first-2">
+                        <span class="material-icons-outlined">reply</span>reply
+                      </div>
+                    {% else %}
+                      <div class="info">
+                          <p><a href="{% url 'delete' comment.id %}" style="color: #ff7979;"><span class="material-icons-outlined">
+                              delete
+                              </span></a></p>
+                         
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="second">{{ comment.body }}</div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <form action="{% url 'comment_post' post_detail.id %}" method="post" novalidate>
+            {% csrf_token %}
+            {{ form.body }}
+            <input type="submit" value="Add Comment" class="hide" />
+          </form>
+        </div>
+        <div class="body">{{ post_detail.body|safe }}</div>
+      </div>
+      
+
+    </div>
+    <div class="details">
+      {% comment %} <div class="tags" style="border: 1px solid red;">
+        <p>Stories from all interests</p>
+        <ul>
+          {% for tag in tags %}
+            <a href="{% url 'post_list_by_tag' tag.slug %}"><li>{{ tag }}</li></a>
+          {% endfor %}
+        </ul>
+      </div> {% endcomment %}
+      <div class="treding" >
+        <p class="trend-title" style="font-size: 1.6rem; margin-bottom: 1rem;">Similar posts</p>
+        {% if similar_posts %}
+          
+          {% for post in similar_posts %}
+            <div class="post">
+              <div class="author-info">
+                {% if post.author.photo %}
+                  <img src="{{ post.author.photo.url }}" />
+                {% else %}
+                  <img src="{% static 'images/1704874044332.jpeg' %}" />
+                {% endif %}
+
+                <p>
+                  <span class="name">{{ post.author }}</span><span class="date">{{ post.created }}</span>
+                </p>
+              </div>
+
+              <div>
+                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p style="background-color: antiquewhite; border-radius: 10px; padding: 0.6rem 1rem; font-size: 1.1rem;margin-bottom: 2rem;">there are no posts similar to this post .</p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelector('.comment-icon').addEventListener('click', () => {
+      document.querySelector('.comment-form').classList.toggle('hide')
+    })
+    
+    document.querySelector('.comment-form form textarea').addEventListener('input', () => {
+      if (document.querySelector('.comment-form form textarea').value.trim() === '') {
+        document.querySelector('.comment-form form input[type=submit]').classList.add('hide')
+      } else {
+        document.querySelector('.comment-form form input[type=submit]').classList.remove('hide')
+      }
+    })
+  </script>
+{% endblock %}

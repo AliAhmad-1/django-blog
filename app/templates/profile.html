@@ -1,0 +1,103 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{ block.super }}-profile
+{% endblock title %}
+
+{% block content %}
+<section>
+    <div class="base-container">
+        {% if messages %}
+        <div class="alert-success">
+            {% for message in messages%} 
+                    <P> {{message}} </P>
+                    <img src="{% static 'images/icons8-ok.svg' %}" >
+            {% endfor%}
+        </div>
+        {% endif%} 
+        <div class="posts">
+            <h5 style="margin-bottom: 2rem;">Blogs Published</h5>
+            <div class="content-blogs-published">
+                
+                
+                {% for post in posts %}
+                    
+                
+                    
+                <div class="post" style="border:1px solid #a3a8aa61; margin-bottom: .5rem; padding: .5rem ; border-radius: 5px;">
+                    <div class="author-info">
+                        
+                        {% if user.photo %}
+                            <img src="{{user.photo.url}}">
+                            {% else %}
+                            <img src="{% static 'images/icons8-male-user-50.png' %}" alt="">
+                        {% endif %}
+                            
+                        
+                        <p><span class="name">{{user}}</span><span class="date"> @ {{post.publish}}</span></p>
+                    </div>
+                    <div>
+                        <div style="height: 130px;overflow: hidden;">
+                            <p class="title"><a href= "{{post.get_absolute_url}}">{{post.title}}</a></p>
+                            <p class="body">{{post.body|safe}}</p>
+                        </div>
+                        <div class="post-img">
+                            
+                            {% if post.image %}
+                            <img src="{{post.image.url}}">
+                            {% endif %}
+                                
+                            
+                        </div>
+                    </div>
+                    <div>
+                        <p class="tag">Travel</p>
+
+
+                    </div>
+                </div>
+                {% empty %}
+                <p class="empty-blogs"> No Blogs published yet</p>
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="details">
+            <div class="profile">
+                
+                {% if user.photo %}
+                <img src="{{user.photo.url}}">
+                {% else %}
+                <img src="{% static 'images/icons8-male-user-50.png' %}">
+                {% endif %}
+                    
+                
+                <p class="username">@{{user}}</p>
+                
+               
+                <p>{{user.blog_posts.count}} Blogs - 0 Reads</p>
+                
+                {% if user == request.user %}
+                <a href="/account/edit_profile">Edit Profile</a>
+                {% endif %}
+                    
+                
+
+                {% if user.bio %}
+                <p>Bio : {{user.bio}}</p>
+                {% else %}
+                <p>Bio : Nothing to read here . </p>
+
+                {% endif %}
+                    
+                
+                <p class="date_joined">date_joined : {{user.date_joined}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+    
+    

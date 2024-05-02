@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        blog-website
+      {% endblock %}
+    </title>
+    <link rel="icon" href="{% static 'images/my-logo-2.jpg' %}" />
+    <link rel="stylesheet" href="{% static 'css/site_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style_add_post.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/media.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'matrail-icons/matrial-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'matrail-icons/matrial-icons-sharp.css' %}" />
+    <link rel="stylesheet" href="{% static 'matrail-icons/matrial-icons-outlined.css' %}" />
+    
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    {% block content %}
+
+    {% endblock %}
+  
+
+    <script src="{% static 'js/script_.js' %}"></script>
+    <script src="{% static 'js/test.js' %}"></script>
+    
+  </body>
+</html>

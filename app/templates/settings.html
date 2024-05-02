@@ -1,0 +1,156 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    {{ block.super }}-Dashboard
+{% endblock title %}
+
+{% block content %}
+<div class="container-blog">
+
+  {% include 'aside2.html' %}
+    <main class="main-blogs">
+
+
+        <div class="container-manage-blogs">
+            <p class="title">Manage Blogs</p>
+            <input type="radio" name="slider" id="published" checked hidden>
+            <input type="radio" name="slider" id="draft" hidden>
+            <nav>
+                <label for="published" class="published">Published</label>
+                <label for="draft" class="draft">Drafts</label>
+                <div class="slider"></div>
+            </nav>
+            <section >
+                <div class="content published">
+                    
+                    {% for post in posts_published %}
+                    <div class="main-div">
+                        <div class="left">
+                            {% if post.image %}
+                            <img src="{{post.image.url}}">
+                            {% else %}
+                            <img src="{% static 'images/1704874044346.jpg' %}">
+                            {% endif %}
+                                
+                            <div>
+                                <p class="title">{{post.title}}</p>
+                                <p>published on {{post.publish}}</p>
+                                <ul>
+                                    <li><a href="" class="edit">Edit</a></li>
+                                    <li><a href="{% url 'delete_post' post.id %}" class="delete">Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="analastic">
+                            <p class="likes"><span>{{post.likes.count}}</span><span>likes</span></p>
+                            <p class="comments"><span>{{post.comments.count}}</span><span>Comments</span></p>
+                            <p><span>0</span><span>Reads</span></p>
+                            <div class="name_person_likes hide">
+                                <ul>
+                                    {% for name in post.likes.all %}
+                                    <li>{{forloop.counter}} - {{name}}</li>
+                                    {% empty %}
+                                    <span>No likes </span>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div  class="name_person_comments hide">
+                                <ul>
+                                    {% for name in post.comments.all %}
+                                    <li>{{forloop.counter}} - {{name.user}}</li>
+                                    {% empty %}
+                                    <span>No comments </span>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    {% empty %}
+                    <p class="empty-blogs"> No Blogs published yet</p>
+                    {% endfor %}
+
+                </div>
+                <div class="content draft">
+
+                    {% for post in draft_posts %}
+                    <div class="main-div">
+                        <div class="left">
+                            {% if post.image %}
+                            <img src="{{post.image.url}}">
+                            {% else %}
+                            <img src="{% static 'images/1704874044346.jpg' %}">
+                            {% endif %}
+                                
+                            <div>
+                                <p class="title">{{post.title}}</p>
+                                <p>published on {{post.publish}}</p>
+                                <ul>
+                                    <li><a href="" class="edit">Edit</a></li>
+                                    <li><a href="{% url 'delete_post' post.id %}" class="delete">Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="analastic">
+                            <p class="likes"><span>{{post.likes.count}}</span><span>likes</span></p>
+                            <p class="comments"><span>{{post.comments.count}}</span><span>Comments</span></p>
+                            <p><span>0</span><span>Reads</span></p>
+
+                        </div>
+
+
+                    </div>
+                    {% empty %}
+                    <p class="empty-blogs"> No Blogs drafts yet</p>
+                    {% endfor %}
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+<script>
+    const navbar_active = document.querySelectorAll('.container-blog .aside li');
+    const name_person_likes=document.querySelectorAll('.name_person_likes');
+    const likes=document.querySelectorAll('.analastic .likes');
+    const name_person_comments=document.querySelectorAll('.name_person_comments');
+    const comments=document.querySelectorAll('.analastic .comments');
+
+
+    comments.forEach((element,index)=>{
+    element.addEventListener('click',()=>{
+        name_person_comments[index].classList.toggle('hide')
+        })
+    })
+
+    likes.forEach((element,index)=>{
+        element.addEventListener('click',()=>{
+            name_person_likes[index].classList.toggle('hide')
+            })
+        })
+
+       
+
+    
+    function active_link() {
+        navbar_active.forEach((item) => {
+            item.classList.remove('active');
+            this.classList.add('active');
+        })
+    }
+    navbar_active.forEach((item) => {
+        item.addEventListener('click', active_link);
+    }) 
+
+
+</script>
+{% endblock content %}
+    
+    
