@@ -2,7 +2,7 @@
 
 # build the project
 echo "Building the project"
-python -m pip install --upgrade pip
+python3.9 -m pip install --upgrade pip
 
 pip3 install awscli
 pip3 install -r requirements.txt
