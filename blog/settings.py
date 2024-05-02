@@ -15,8 +15,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
-import dj_database_url
-from decouple import config
+# import dj_database_url
+# from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -118,17 +118,17 @@ WSGI_APPLICATION = 'blog.wsgi.app'
 #         "PORT": "5432",
 #     }
 # }
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "railway",
-#         "USER": "postgres",
-#         "PASSWORD": "WEXhhSNXBLZfuunoGzGTbjooiGaqVYhP",
-#         "HOST": "roundhouse.proxy.rlwy.net",
-#         "PORT": "12534",
-#     }
-# }
-DATABASES['default']=dj_database_url.config()
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "railway",
+        "USER": "postgres",
+        "PASSWORD": "WEXhhSNXBLZfuunoGzGTbjooiGaqVYhP",
+        "HOST": "roundhouse.proxy.rlwy.net",
+        "PORT": "12534",
+    }
+}
+# DATABASES['default']=dj_database_url.config()
 
 AUTHENTICATION_BACKENDS= (
 'social_core.backends.github.GithubOAuth2',
@@ -175,10 +175,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 # STATIC_ROOT=os.path.join(BASE_DIR,'app/static')
 STATIC_URL = 'static/'
-# STATICFILES_DIRS=[
-# os.path.join(BASE_DIR,'app/static')
-# ]
-STATIC_ROOT=os.path.join(BASE_DIR,"staticfiles_build/static")
+STATICFILES_DIRS=[
+os.path.join(BASE_DIR,'app/static')
+]
+STATIC_ROOT=os.path.join(BASE_DIR,"staticfiles_build","app/static")
 
 
 
