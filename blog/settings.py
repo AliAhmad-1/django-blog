@@ -57,12 +57,13 @@ INSTALLED_APPS = [
     # for social authentication
     'social_django',
     'ckeditor',
-
+    "whitenoise.runserver_nostatic",
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -175,10 +176,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 # STATIC_ROOT=os.path.join(BASE_DIR,'app/static')
 STATIC_URL = 'static/'
-STATICFILES_DIRS=[
-os.path.join(BASE_DIR,'app/static')
-]
-STATIC_ROOT=os.path.join(BASE_DIR,"app/static")
+# STATICFILES_DIRS=[
+# os.path.join(BASE_DIR,'app/static')
+# ]
+STATIC_ROOT = os.path.join(BASE_DIR, "app/static")
 
 
 
@@ -209,7 +210,7 @@ SOCIAL_AUTH_GITHUB_SECRET=str(os.getenv('GITHUB_SECRET'))
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY =str(os.getenv('GOOGLE_OAUTH2_KEY'))
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET =str(os.getenv('GOOGLE_OAUTH2_SECRET'))
 
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 LOGIN_URL = '/account/login'

@@ -1,0 +1,1258 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "EB Garamond", serif;
+    /* background-color: rgba(255, 248, 220, 0.302); */
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* header style */
+
+header {
+    height: 60px;
+    width: 100%;
+    z-index: 999;
+    /* background-color: antiquewhite; */
+    background-color: white;
+    position: fixed;
+}
+
+header .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.nav .left-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav .left-section img {
+    width: 120px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.nav .left-section .search {
+    position: relative;
+}
+
+.nav .left-section span {
+    position: absolute;
+    color: rgb(138, 122, 122);
+    font-size: 1.3rem;
+    top: 0.5rem;
+    left: 0.4rem;
+}
+
+.nav .left-section input {
+    padding: 0.5rem 2rem;
+    max-width: 11rem;
+    border-radius: 1rem;
+    border: none;
+    font-family: "EB Garamond", serif;
+    background-color: rgba(221, 214, 214, 0.39);
+}
+
+.nav .left-section input:focus-within {
+    outline: none;
+    color: black;
+    border: 1px solid rgba(0, 0, 0, 0.671);
+    background-color: transparent;
+}
+
+.nav .left-section input::placeholder {
+    color: rgb(146, 135, 135);
+    font-weight: 600;
+}
+
+.nav .right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.4rem;
+}
+
+.right-section .add-post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: gray;
+}
+
+.right-section .add-post:hover {
+    color: black;
+}
+
+.right-section ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-section ul li {
+    margin-right: 0.5rem;
+    transition: all 0.2s;
+}
+
+profile a {
+    background-color: black;
+    padding: 0.3rem 1rem;
+    color: white;
+    font-size: 1rem;
+    border-radius: 2rem;
+    padding-bottom: 7px;
+}
+
+.right-section ul li:hover,
+.password-change button:hover {
+    transform: translateY(-6px);
+}
+
+.right-section ul li:nth-child(1) a {
+    color: white;
+    padding: 0.3rem 1rem;
+    background-color: black;
+    font-size: 1rem;
+    border-radius: 2rem;
+    padding-bottom: 7px;
+}
+
+.right-section ul li:nth-child(2) a {
+    background-color: rgba(221, 214, 214, 0.39);
+    padding: 0.3rem 1rem;
+    color: black;
+    font-size: 1rem;
+    border-radius: 2rem;
+    padding-bottom: 7px;
+}
+
+.hide {
+    display: none;
+}
+
+.menu {
+    background-color: white;
+    width: 180px;
+    height: 230px;
+    position: absolute;
+    right: 5rem;
+    top: 75px;
+    box-shadow: 0px 0px 10px gray;
+    z-index: 999;
+}
+
+.menu ul {
+    height: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu ul li {
+    width: 100%;
+}
+
+.menu ul li:hover {
+    background-color: rgb(229, 229, 229);
+    cursor: pointer;
+}
+
+.menu ul li a {
+    display: flex;
+    align-items: center;
+    gap: 0 .3rem;
+    color: black;
+    padding: 1rem;
+}
+
+.menu ul li a img {
+    width: 20px;
+}
+
+
+/* header style */
+
+
+/* login style */
+
+.login-content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    width: 300px;
+}
+
+.login h5 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.login form {
+    width: 100%;
+}
+
+.login .username {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.login .username span {
+    position: absolute;
+    color: rgba(8, 8, 8, 0.769);
+    top: 5px;
+    left: 6px;
+    width: 1px;
+}
+
+.login .username input {
+    width: 100%;
+    padding: 0.5rem 2.4rem;
+    border: none;
+    border-radius: 6px;
+    background-color: rgba(45, 47, 46, 0.12);
+    font-family: "EB Garamond", serif;
+    font-size: 1rem;
+}
+
+.login .email input:focus-within,
+.login .password input:focus-within,
+.login .username input:focus-within {
+    border: 1px solid black;
+    outline: none;
+    background-color: transparent;
+    font-family: "EB Garamond", serif;
+}
+
+.login .email input::placeholder,
+.login .password input::placeholder,
+.login .username input::placeholder {
+    color: black;
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: "EB Garamond", serif;
+}
+
+.login form button {
+    width: 100px;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    background-color: black;
+    color: white !important;
+    border: none;
+    font-family: "EB Garamond", serif;
+    padding: 0.5rem;
+    margin-top: 2rem;
+    margin-left: calc(300px - 200px);
+    cursor: pointer;
+}
+
+.errorlist {
+    position: relative;
+    left: 4px;
+    top: 2px;
+    color: rgba(255, 0, 0, 0.639);
+}
+
+.in-valid {
+    outline: 1px solid red;
+    border: none;
+}
+
+.valid {
+    outline: 1px solid green;
+    border: none;
+}
+
+.login form button:hover {
+    background-color: transparent;
+    color: black !important;
+    border: 1px solid black;
+}
+
+.horizontal-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 10px;
+}
+
+.horizontal-line hr {
+    color: antiquewhite;
+}
+
+.social-links {
+    margin: auto;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.social-links img {
+    width: 25px;
+    margin-top: 1rem;
+}
+
+.social-links div {
+    transition: all 0.2s;
+}
+
+.social-links div:hover {
+    transform: scale(1.2);
+}
+
+.social-links div a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: black;
+}
+
+.login :nth-child(5) {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    color: black;
+}
+
+
+/* login style */
+
+
+/* home style */
+
+.base-container {
+    position: absolute;
+    top: 70px;
+    display: flex;
+    justify-content: start;
+    gap: 2rem;
+    z-index: 99;
+    width: 100%;
+}
+
+.posts {
+    width: 60%;
+    padding-left: 2rem;
+}
+
+.posts .f-search {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.posts .f-search form {
+    display: none;
+}
+
+.posts .f-search .search {
+    position: relative;
+}
+
+.posts .f-search .search span {
+    position: absolute;
+    color: rgb(138, 122, 122);
+    font-size: 1.3rem;
+    top: 1.45rem;
+    left: 0.4rem;
+}
+
+.posts .f-search .search input {
+    padding: 0.5rem 2rem;
+    max-width: 11rem;
+    border-radius: 1rem;
+    border: none;
+    font-family: "EB Garamond", serif;
+    background-color: rgba(221, 214, 214, 0.39);
+    margin-top: 1rem;
+}
+
+.posts .f-search .search input:focus-within {
+    background-color: transparent;
+    outline: none;
+    border: 1px solid orchid;
+}
+
+.details {
+    max-width: 30%;
+}
+
+.posts h5 {
+    font-size: 1.3rem;
+    width: fit-content;
+    margin-top: 1rem;
+    /* border-bottom: 2px solid #6a6a6ae5; */
+}
+
+.post {
+    width: 100%;
+}
+
+.posts .author-info {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: .6rem;
+    font-weight: 400;
+    font-family: sans-serif;
+    font-size: .8rem;
+}
+
+.posts .author-info p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 7px;
+}
+
+.posts .author-info .name {
+    font-weight: 600;
+}
+
+.posts .author-info .date {
+    margin-bottom: 3px;
+}
+
+.posts .author-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.post :nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.4rem;
+    gap: 1rem;
+}
+
+.post :nth-child(2) .title {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.post :nth-child(2) .body {
+    font-size: 0.9rem;
+}
+
+.post :nth-child(3) {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.post :nth-child(3) .tag {
+    background-color: antiquewhite;
+    padding: 0.25rem 1.1rem;
+    border-radius: 1rem;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.post :nth-child(3) .favorite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    gap: 3px;
+    opacity: .9;
+    cursor: pointer;
+}
+
+.post :nth-child(3) .favorite .number-of-likes {
+    position: relative;
+    bottom: 4px;
+}
+
+.post-img img {
+    width: 200px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+/* details style */
+
+.treding {
+    margin-top: 1rem;
+    counter-reset: counter 0;
+}
+
+.details .tags p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.details .tags ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1rem;
+    margin: 1rem 0;
+    padding: 0 2rem;
+}
+
+.details .tags ul li {
+    background-color: antiquewhite;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+}
+
+.details .tags ul li a {
+    color: black;
+    font-weight: 500;
+}
+
+.treding {
+    padding: 0;
+}
+
+.treding .trend-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.treding .post {
+    margin-top: 1rem;
+    margin-left: 4.6rem;
+    position: relative;
+}
+
+.treding .post::before {
+    position: absolute;
+    top: -0.1rem;
+    left: -4.3rem;
+    counter-increment: counter;
+    content: counter(counter, decimal-leading-zero);
+    font-size: 3.5rem;
+    color: rgb(123, 121, 119);
+}
+
+.treding .post .author-info {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: .4rem;
+}
+
+.treding .post .author-info p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 7px;
+    color: rgba(0, 0, 0, 0.653);
+}
+
+.treding .post .author-info .name {
+    font-weight: 500;
+    color: black;
+}
+
+.treding .post .author-info .date {
+    margin-bottom: 7px;
+}
+
+.treding .post .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-left: 6px;
+    max-width: 80%;
+}
+
+.treding .post .author-info img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+
+/* details style */
+
+
+/* home style */
+
+
+/* post detail style  */
+
+.post-detail {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1rem;
+    position: absolute;
+    top: 70px;
+}
+
+.post-detail .container {
+    width: 700px;
+    position: relative;
+}
+
+.post-detail .container .post-detail-content {
+    padding: 1rem 1.2rem;
+}
+
+.post-detail .container .post-img {
+    width: 100%;
+    height: 250px;
+    object-fit: fill;
+}
+
+.post-detail .container .post-img img {
+    object-fit: contain;
+}
+
+.post-detail .container .info div:first-child {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-detail .container .info .comments {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.post-detail .container .info .comments .share {
+    display: flex;
+    gap: 5px;
+}
+
+.post-detail .container .info .content-comment {
+    display: flex;
+    gap: 6px;
+    margin: 1rem 0;
+}
+
+.post-detail .container .info .content-comment div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
+.post-detail .container .info .content-comment img {
+    width: 20px;
+}
+
+.post-detail .container .info .author {
+    display: flex;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.post-detail .container .title {
+    margin: 1rem 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.author img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+
+/* post detail style  */
+
+
+/* profile style  */
+
+.base-container .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.24);
+}
+
+.base-container .profile a {
+    color: black;
+    padding: .5rem 1rem;
+    background-color: #f2efef;
+    border-radius: 4px;
+}
+
+.base-container .profile a:hover {
+    background-color: #3889a4bf;
+}
+
+.base-container .profile p {
+    font-size: 1.1rem;
+    margin: 1.2rem 0;
+}
+
+.base-container .profile .date_joined {
+    margin-top: 2.5rem;
+    font-size: 1rem;
+}
+
+.base-container .profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.posts .content-blogs-published .empty-blogs {
+    width: 100%;
+    text-align: center;
+    background-color: #f2efef;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    padding: .5rem;
+}
+
+
+/* profile style  */
+
+
+/* edit profile style */
+
+ul {
+    list-style-type: none;
+}
+
+aside {
+    height: 100vh;
+    position: fixed;
+    top: 70px;
+    width: 25%;
+    border-right: 1px solid rgba(0, 0, 0, 0.424);
+}
+
+aside .content .dashboard,
+aside .content .settings {
+    height: 25vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem 0;
+    margin-left: 5rem;
+}
+
+aside .content .dashboard h5,
+aside .content .settings h5 {
+    font-size: 1.5rem;
+    margin-right: 2.5rem;
+}
+
+aside .content .dashboard nav ul li:first-child {
+    margin-right: 1.29rem;
+}
+
+aside .content .settings nav ul li:last-child {
+    margin-left: 2rem;
+}
+
+aside .content .dashboard nav ul li:hover,
+aside .content .settings nav ul li:hover {
+    font-weight: 600;
+}
+
+aside .content .dashboard nav ul li a,
+aside .content .settings nav ul li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    margin-top: .5rem;
+    color: black;
+}
+
+aside .content .dashboard img,
+aside .content .settings img {
+    width: 25px;
+    height: 25px;
+}
+
+main {
+    position: absolute;
+    top: 70px;
+    left: 27%;
+    width: 70%;
+}
+
+main .edit-profile-content {
+    padding: 1rem .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main .title {
+    font-size: 1.5rem;
+}
+
+main .edit-profile-form form {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    gap: .9rem 0;
+}
+
+main .edit-profile-form img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: -3rem;
+    object-fit: cover;
+}
+
+main .edit-profile-form form label.add_label {
+    cursor: pointer;
+    position: relative;
+    border-radius: 50%;
+    color: white;
+    background-color: black;
+    border: 4px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    top: .2rem;
+    left: 1.9rem;
+}
+
+main .edit-profile-form form input[type='file'] {
+    display: none;
+}
+
+main .edit-profile-form form .user_name {
+    position: relative;
+    width: 100%;
+}
+
+main .edit-profile-form form input[type='text'],
+main .edit-profile-form form input[type='email'],
+main .edit-profile-form form textarea {
+    padding: .7rem;
+    width: 100%;
+    font-family: "EB Garamond", serif;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.902);
+    font-weight: 500;
+    border-radius: .4rem;
+    background-color: rgba(45, 47, 46, 0.12);
+    border: none;
+    margin: .3rem 0;
+}
+
+main .edit-profile-form form input[type='text']:focus-within,
+main .edit-profile-form form input[type='email']:focus-within,
+main .edit-profile-form form textarea:focus-within {
+    border: none;
+    outline: 1px solid rgba(0, 0, 0, 0.509);
+    background-color: transparent;
+}
+
+main .edit-profile-form form input[type='submit'] {
+    padding: .5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.894);
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: "EB Garamond", serif;
+    margin-top: 5px;
+}
+
+
+/* edit profile style */
+
+
+/* change password style */
+
+.password-change {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.password-change .pass_svg_image {
+    width: 300px;
+    height: 400px;
+}
+
+.password-change form {
+    padding: 3rem 1rem;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 9px;
+}
+
+.password-change .password {
+    position: relative;
+    margin: .4rem 0;
+    width: 100%;
+}
+
+.password-change .password .errorlist {
+    color: rgba(255, 0, 0, 0.692);
+}
+
+.password-change .password span.lock {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.79);
+    left: 5px;
+    top: 10px;
+    font-size: 22px;
+}
+
+.password-change .password span.show1 {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.793);
+    cursor: pointer;
+}
+
+.password-change .password .in-valid {
+    border: .6px solid red;
+    outline: none;
+    background-color: transparent;
+}
+
+.password-change .password input {
+    padding: 0.7rem 2.2rem;
+    width: 100%;
+    background-color: rgba(45, 47, 46, 0.12);
+    border: none;
+    border-radius: 6px;
+}
+
+.password-change .password input::placeholder {
+    font-family: "EB Garamond", serif;
+    font-size: 0.9rem;
+}
+
+.password-change .password input:focus-within {
+    outline: 1px solid black;
+    background-color: transparent;
+    border: none;
+}
+
+.password-change button {
+    padding: .5rem .8rem;
+    background-color: black;
+    color: white;
+    font-family: "EB Garamond", serif;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+
+/* change password style */
+
+.alert-success {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    left: 39%;
+    top: -5rem;
+    font-size: 1.1rem;
+    border: 1.2px solid green;
+    width: 22rem;
+    color: green;
+    padding: .5rem 1rem;
+    border-radius: 6px;
+    animation-name: myanimi;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+}
+
+.alert-success img {
+    width: 25px;
+}
+
+.pagenation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.pagenation ul {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.767);
+    border-radius: 10px;
+}
+
+.pagenation ul li {
+    padding: .5rem 1rem;
+    color: white;
+    font-family: "EB Garamond", serif;
+}
+
+.pagenation ul li:hover {
+    background-color: rgba(61, 43, 226, 0.373);
+    font-family: "EB Garamond", serif;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+.pagenation ul li a {
+    color: white;
+    font-family: "EB Garamond", serif;
+}
+
+@keyframes myanimi {
+    0% {
+        top: -6rem;
+    }
+    25% {
+        top: -5px;
+    }
+    50% {
+        top: -5px;
+    }
+    75% {
+        top: -5px;
+    }
+    85% {
+        top: -5px;
+    }
+    100% {
+        top: -6rem;
+    }
+}
+
+.share_form {
+    position: absolute;
+    left: 30%;
+    top: 6rem;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    width: 300px;
+    height: 370px;
+    z-index: 9999;
+    background-color: #ffffff;
+    padding: 1rem .6rem;
+    border-radius: 5px;
+}
+
+.share_form h5 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.845);
+    margin-bottom: .6rem;
+}
+
+.share_form form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.share_form form input,
+.share_form form textarea {
+    width: 100%;
+    padding: .5rem;
+    margin: .4rem 0;
+    border: none;
+    border-radius: 9px;
+    font-family: "EB Garamond", serif;
+    outline: 1px solid rgba(0, 0, 0, 0.81);
+}
+
+.share_form form input.in-valid-share {
+    border: 1px solid red;
+    outline: none;
+}
+
+.share_form form input.valid {
+    border: 1px solid green;
+    outline: none;
+}
+
+.share_form form input:focus-within,
+.share_form form textarea:focus-within {
+    border: none;
+    outline: 1px solid rgba(0, 0, 0, 0.81);
+}
+
+.share_form form input[type='submit'] {
+    background-color: rgba(0, 0, 0, 0.862);
+    color: white;
+    font-family: "EB Garamond", serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: .5rem;
+}
+
+
+/* comment form */
+
+.comment-form {
+    width: 100%;
+    padding: .4rem 1rem;
+    margin-bottom: .4rem;
+    border: 1px solid rgba(160, 41, 184, 0.171);
+    border-radius: 4px;
+}
+
+
+/*  */
+
+.comment-form .comments-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-form .comments-content .comment {
+    margin-bottom: .5rem;
+}
+
+.comment-form .comments-content .first {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-form .comments-content .first .first-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .6rem;
+}
+
+.comment-form .comments-content .first .first-1 p {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.comment-form .comments-content .first .first-1 span {
+    color: rgba(0, 0, 0, 0.566);
+    font-size: .8rem;
+}
+
+.comment-form .comments-content .first .first-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.575);
+    cursor: pointer;
+}
+
+.comment-form .comments-content .first .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
+
+.comment-form .comments-content .first .info p:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: rgba(199, 21, 134, 0.683);
+    cursor: pointer;
+}
+
+.comment-form .comments-content .first .info p:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: rgba(82, 22, 134, 0.753);
+    cursor: pointer;
+}
+
+.comment-form .comments-content .first .first-2:hover {
+    color: mediumpurple;
+}
+
+.comment-form .comments-content .first .first-1 img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.comment-form .comments-content .second {
+    margin: .5rem 0;
+}
+
+.comment-form textarea {
+    width: 100%;
+    margin-bottom: .6rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: .5rem 1rem;
+    font-family: "EB Garamond", serif;
+    font-size: 1rem;
+}
+
+.comment-form textarea:focus-within {
+    outline: none;
+    border: 1px solid rgba(39, 100, 161, 0.706);
+}
+
+.comment-form input {
+    padding: .5rem 1rem;
+    background-color: black;
+    color: white;
+    border: none;
+    font-weight: 700;
+    border-radius: 9px;
+    cursor: pointer;
+}

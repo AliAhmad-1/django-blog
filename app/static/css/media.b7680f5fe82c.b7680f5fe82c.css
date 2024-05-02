@@ -1,0 +1,131 @@
+/* media query for header */
+
+@media (max-width:460px) {
+    .password-change form button {
+        width: max-content;
+    }
+}
+
+@media (max-width:728px) {
+    .welcome {
+        display: none;
+    }
+    header .nav {
+        padding: 0 1rem;
+    }
+    .menu {
+        right: 0px;
+        top: 60px;
+        box-shadow: 0px 0px 10px gray;
+        z-index: 999;
+    }
+    .right-section ul li:last-child {
+        display: none;
+    }
+    header .left-section .search {
+        display: none;
+    }
+    .posts .f-search form {
+        display: block;
+    }
+    .password-change {
+        flex-wrap: wrap;
+    }
+    .password-change form {
+        margin-top: -3rem;
+    }
+}
+
+@media (max-width:979px) {
+    .treding .post .author-info p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: .8rem;
+        color: rgba(0, 0, 0, 0.653);
+    }
+    .post-detail .details {
+        width: 100%;
+    }
+    .post-detail .details .treding {
+        padding: 1rem;
+        margin-bottom: 3rem;
+    }
+    .details .treding .name {
+        font-size: 1rem;
+        margin-bottom: 3px;
+        font-weight: 600;
+    }
+    .details .treding .date {
+        font-size: .9rem;
+    }
+}
+
+@media (max-width:890px) {
+    .base-container {
+        position: absolute;
+        top: 70px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .post-img img {
+        width: 150px;
+        height: 90px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    .posts .author-info .name {
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.89);
+        font-size: .9rem;
+        margin-top: 5px;
+    }
+    .posts .author-info .date {
+        color: rgba(0, 0, 0, 0.653);
+        font-size: .6rem;
+    }
+    .posts {
+        width: 100%;
+        padding: 0 1rem;
+    }
+    .tags {
+        padding: 0 .9rem;
+    }
+    .details {
+        max-width: 100%;
+    }
+    .treding {
+        padding: 0 .9rem;
+    }
+    .treding .post {
+        max-width: 80%;
+    }
+}
+
+@media (max-width:560px) {
+    .share_form {
+        position: absolute;
+        left: 2%;
+        top: 0rem;
+    }
+}
+
+@media(max-width:440px) {
+    form button {
+        width: 120px;
+    }
+    .container-blog-add .add_post_content .title {
+        margin-left: 1.6rem;
+    }
+    .base-container .profile img {
+        width: 75px;
+        height: 75px;
+    }
+    .base-container .profile .date_joined {
+        margin-top: 1rem;
+    }
+}
+
+
+/* media query for header */
