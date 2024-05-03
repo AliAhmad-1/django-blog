@@ -15,8 +15,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
-# import dj_database_url
-# from decouple import config
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -119,17 +118,21 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 #         "PORT": "5432",
 #     }
 # }
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "railway",
+#         "USER": "postgres",
+#         "PASSWORD": "jzCqIEezxMiZeFAVnHzsTKPjSEXLQVxO",
+#         "HOST": "roundhouse.proxy.rlwy.net",
+#         "PORT": "31668",
+#     }
+# }
+# https://railway.app/project/3856bb62-9f96-4464-adda-82b2eed02e72/service/8d08263f-6d1b-4428-96e5-c5b2f92631e0/data
+DATABSE_URL="postgresql://postgres:jzCqIEezxMiZeFAVnHzsTKPjSEXLQVxO@roundhouse.proxy.rlwy.net:31668/railway"
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "railway",
-        "USER": "postgres",
-        "PASSWORD": "WEXhhSNXBLZfuunoGzGTbjooiGaqVYhP",
-        "HOST": "roundhouse.proxy.rlwy.net",
-        "PORT": "12534",
-    }
+'default':dj_database_url.config(default=DATABSE_URL,conn_max_age=500)
 }
-# DATABASES['default']=dj_database_url.config()
 
 AUTHENTICATION_BACKENDS= (
 'social_core.backends.github.GithubOAuth2',
