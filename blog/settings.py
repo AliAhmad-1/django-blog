@@ -219,3 +219,6 @@ LOGOUT_URL = '/account/logout/'
 LOGOUT_REDIRECT_URL = '/account/login'
 
 
+SECURE_PROXY_SSL_HEADER=("HTTP_X_FORWARDED_PROTO","https")
+SECURE_SSL_REDIRECT=True
+
